@@ -38,14 +38,27 @@ module.exports = function (app, addon) {
           switch(latestStatus) {
             case 'Green':
               record.messageStyle = 'success'
+              record.statusStyle = 'success'
               break
             case 'Yellow':
               record.messageStyle = 'warning'
+              record.statusStyle = 'moved'
               break
             case 'Red':
               record.messageStyle = 'error'
+              record.statusStyle = 'error'
               break
+            case 'Planning':
+              record.messageStyle = 'info'
+              record.statusStyle = 'current aui-lozenge-subtle'
+            case 'Blocked Internal':
+              record.messageStyle = 'info'
+              record.statusStyle = 'current'
+            case 'Blocked External':
+              record.messageStyle = 'info'
+              record.statusStyle = 'new'
             default:
+              record.messageStyle = ''
               record.messageStyle = 'info'
           }
           console.log(record.messageStyle)

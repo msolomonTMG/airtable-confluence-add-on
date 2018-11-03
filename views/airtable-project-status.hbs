@@ -1,7 +1,7 @@
 <!-- <div style="border-radius: 3px; border: 1px solid green; padding: 10px; box-shadow: 0 1px 1px rgba(9, 30, 66, 0.25);"> -->
 <div class="aui-message aui-message-{{project.messageStyle}}">
   <p><strong>Project Name:</strong> {{project.fields.Name}}</p>
-  <p><strong>Status:</strong> <span class="aui-lozenge aui-lozenge-subtle aui-lozenge-moved">{{project.fields.[Latest Status].[0]}}</span>
+  <p><strong>Status:</strong> <span class="aui-lozenge aui-lozenge-subtle aui-lozenge-{{project.statusStyle}}">{{project.fields.[Latest Status].[0]}}</span>
   <p><strong>Update:</strong> {{project.fields.[Latest Update].[0]}}</p>
   <p><strong>Last Updated:</strong> {{project.fields.[Last Updated]}}</p>
   <p><strong>Owner:</strong> {{project.fields.[Owner Name].[0]}}</p>
