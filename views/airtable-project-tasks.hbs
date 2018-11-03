@@ -16,11 +16,11 @@
         {{#if this.inProgress}}
           <td><span class="aui-lozenge aui-lozenge-current">{{this.fields.Status}}</span></td>
         {{else if this.isBlocked}}
-          <td><span class="aui-lozenge aui-lozenge-subtle aui-lozenge-error">{{this.fields.Status}}</span></td>
+          <td><span class="aui-lozenge aui-lozenge-error">{{this.fields.Status}}</span></td>
         {{else if this.isDone}}
           <td><span class="aui-lozenge aui-lozenge-success">{{this.fields.Status}}</span></td>
         {{else}}
-          <td>{{this.fields.Status}}</td>
+          <td><span class="aui-lozenge">To Do</span></td>
         {{/if}}
       </tr>
     {{/each}}
