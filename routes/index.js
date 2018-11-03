@@ -1,7 +1,18 @@
 const credentials = require('../credentials.json')
 const Airtable = require('airtable')
-const base = new Airtable({apiKey: credentials.airtable.apiKey}).base(credentials.airtable.baseId)
-
+let airtable = {
+  apiKey: '',
+  baseId: ''
+}
+if (process.env.NODE_ENV === 'production') {
+  airtable.apiKey = process.env.AIRTABLE_API_KEY
+  airtable.baseId = process.env.AIRTABLE_BASE_ID
+} else {
+  airtable.apiKey = credentials.airtable.apiKey
+  airtable.baseId = credentials.airtable.baseId
+}
+const base = new Airtable({apiKey: airtable.apiKey}).base(airtable.baseId)
+console.log(process.env.NODE_ENV)
 
 module.exports = function (app, addon) {
 
