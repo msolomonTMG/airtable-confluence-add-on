@@ -1,0 +1,28 @@
+<table class="aui aui-table-list">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Project</th>
+      <th>Due Date</th>
+      <th>Assignee</th>
+      <th>Status</th>
+    <tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{task.fields.Name}}</td>
+      <td>{{task.fields.[Project Name Rollup]}}
+      <td>{{task.fields.[Due Date]}}</td>
+      <td>{{task.fields.[Assignee Name Lookup].[0]}}</td>
+      {{#if task.inProgress}}
+        <td><span class="aui-lozenge aui-lozenge-current">{{task.fields.Status}}</span></td>
+      {{else if task.isBlocked}}
+        <td><span class="aui-lozenge aui-lozenge-error">{{task.fields.Status}}</span></td>
+      {{else if task.isDone}}
+        <td><span class="aui-lozenge aui-lozenge-success">{{task.fields.Status}}</span></td>
+      {{else}}
+        <td><span class="aui-lozenge">To Do</span></td>
+      {{/if}}
+    </tr>
+  </tbody>
+</table>

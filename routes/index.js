@@ -109,8 +109,43 @@ module.exports = function (app, addon) {
       }
     })
     
+    app.get('/render-airtable-task', addon.authenticate(), function (req, res) {
+      if (!req.query.taskId) {
+        res.render('airtable-project-status', {
+          task: {
+            fields: {
+              Name: 'No Task Selected'
+            }
+          }
+        })
+      } else {
+        base('Tasks').find(req.query.taskId, function(err, record) {
+          if (err) { console.error(err); return; }
+          switch(record.get('Status')) {
+            case 'In Progress':
+              record.inProgress = true
+              break
+            case 'Blocked':
+              record.isBlocked = true
+              break
+            case 'Done':
+              record.isDone = true
+              break
+          }
+          console.log(record.messageStyle)
+          res.render('airtable-task', {
+            task: record
+          })  
+        })
+      }
+    })
+    
     app.get('/airtable-project-selector', addon.authenticate(), function (req, res) {
       res.render('airtable-project-status-selector')
+    })
+    
+    app.get('/airtable-task-selector', addon.authenticate(), function (req, res) {
+      res.render('airtable-task-selector')
     })
     
     app.get('/search/project', function (req, res) {
@@ -134,6 +169,30 @@ module.exports = function (app, addon) {
       }, function done(err) {
         if (err) { console.error(err); return (err); }
         console.log(JSON.stringify(recordsToReturn))
+        res.send(JSON.stringify(recordsToReturn))
+      })
+    })
+    
+    app.get('/search/task', function (req, res) {
+      res.setHeader('Content-Type', 'application/json');
+      let recordsToReturn = []
+      let taskRetrievalOptions = {
+        view: 'All Tasks',
+        sort: [{field: "Name", direction: "desc"}]
+      }
+      if (req.query.q) {
+        taskRetrievalOptions.filterByFormula = `FIND(UPPER("${req.query.q}"), UPPER({Name}), 0)`
+      }
+      base('Tasks').select(taskRetrievalOptions).eachPage(function page(records, fetchNextPage) {
+        for (const record of records) {
+          recordsToReturn.push({
+            label: record.get('Name'),
+            value: record.id
+          })
+        }
+        fetchNextPage()
+      }, function done(err) {
+        if (err) { console.error(err); return (err); }
         res.send(JSON.stringify(recordsToReturn))
       })
     })

@@ -24,6 +24,36 @@
       "staticContentMacros": [
         {
           "renderingMethod": "get",
+          "url": "/render-airtable-task?taskId={taskId}",
+          "description": {
+            "value": "Pull a single task from our Airtable"
+          },
+          "icon": {
+            "width": 80,
+            "height": 80,
+            "url": "/img/airtable-logo.png"
+          },
+          "categories": [
+            "visuals"
+          ],
+          "outputType": "block",
+          "bodyType": "none",
+          "editor": {
+            "url": "/airtable-task-selector",
+            "editTitle": {
+              "value": "Edit Task Selection"
+            },
+            "insertTitle": {
+              "value": "Select a Task"
+            }
+          },
+          "name": {
+            "value": "Airtable Task"
+          },
+          "key": "airtable-task"
+        },
+        {
+          "renderingMethod": "get",
           "url": "/render-airtable-project-tasks?projectId={projectId}",
           "description": {
             "value": "Pull the tasks of a project from our Airtable"
