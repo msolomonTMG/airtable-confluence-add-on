@@ -31,10 +31,7 @@
           "icon": {
             "width": 80,
             "height": 80,
-            "url": "/maps/icon.png"
-          },
-          "documentation": {
-            "url": "http://docs.example.com/addons/maps"
+            "url": "/img/airtable-logo.png"
           },
           "categories": [
             "visuals"
@@ -64,10 +61,7 @@
           "icon": {
             "width": 80,
             "height": 80,
-            "url": "/maps/icon.png"
-          },
-          "documentation": {
-            "url": "http://docs.example.com/addons/maps"
+            "url": "/img/airtable-logo.png"
           },
           "categories": [
             "visuals"
@@ -88,31 +82,7 @@
           },
           "key": "airtable-project-status"
         }
-      ],
-        "generalPages": [
-            {
-                "key": "hello-world-page-jira",
-                "location": "system.top.navigation.bar",
-                "name": {
-                    "value": "Hello World"
-                },
-                "url": "/hello-world",
-                "conditions": [{
-                    "condition": "user_is_logged_in"
-                }]
-            },
-            {
-                "key": "hello-world-page-confluence",
-                "location": "system.header/left",
-                "name": {
-                    "value": "Hello World"
-                },
-                "url": "/hello-world",
-                "conditions": [{
-                    "condition": "user_is_logged_in"
-                }]
-            }
-        ]
+      ]
     },
     "apiMigrations": {
         "gdpr": true
