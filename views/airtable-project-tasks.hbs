@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Phase</th>
       <th>Due Date</th>
       <th>Assignee</th>
       <th>Status</th>
@@ -11,6 +12,7 @@
     {{#each tasks}}
       <tr>
         <td>{{this.fields.Name}}</td>
+        <td>{{this.fields.[Phase Name Look Up].[0]}}
         <td>{{this.fields.[Due Date]}}</td>
         <td>{{this.fields.[Assignee Name Lookup].[0]}}</td>
         {{#if this.inProgress}}
