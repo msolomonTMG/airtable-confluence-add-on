@@ -33,7 +33,22 @@ module.exports = function (app, addon) {
       } else {
         base('Projects').find(req.query.projectId, function(err, record) {
           if (err) { console.error(err); return; }
-          console.log(record)
+          let latestStatus = record.get('Latest Status') ? record.get('Latest Status')[0] : ''
+          console.log(record.get('Latest Status')[0])
+          switch(latestStatus) {
+            case 'Green':
+              record.messageStyle = 'success'
+              break
+            case 'Yellow':
+              record.messageStyle = 'warning'
+              break
+            case 'Red':
+              record.messageStyle = 'error'
+              break
+            default:
+              record.messageStyle = 'info'
+          }
+          console.log(record.messageStyle)
           res.render('airtable-project-status', {
             project: record
           })  
