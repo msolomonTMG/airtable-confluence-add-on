@@ -1,0 +1,28 @@
+<table class="aui aui-table-sortable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Due Date</th>
+      <th>Assignee</th>
+      <th>Status</th>
+    <tr>
+  </thead>
+  <tbody>
+    {{#each tasks}}
+      <tr>
+        <td>{{this.fields.Name}}</td>
+        <td>{{this.fields.[Due Date]}}</td>
+        <td>{{this.fields.[Assignee Name Lookup].[0]}}</td>
+        {{#if this.inProgress}}
+          <td><span class="aui-lozenge aui-lozenge-current">{{this.fields.Status}}</span></td>
+        {{else if this.isBlocked}}
+          <td><span class="aui-lozenge aui-lozenge-subtle aui-lozenge-error">{{this.fields.Status}}</span></td>
+        {{else if this.isDone}}
+          <td><span class="aui-lozenge aui-lozenge-success">{{this.fields.Status}}</span></td>
+        {{else}}
+          <td>{{this.fields.Status}}</td>
+        {{/if}}
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

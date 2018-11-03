@@ -41,10 +41,48 @@ module.exports = function (app, addon) {
       }
     })
     
+    app.get('/render-airtable-project-tasks', addon.authenticate(), function (req, res) {
+      if (!req.query.projectId) {
+        res.render('airtable-project-status', {
+          project: {
+            fields: {
+              Name: 'No Project Selected'
+            }
+          }
+        })
+      } else {
+        let tasks = []
+        base('Tasks').select({
+          view: 'All Tasks',
+          sort: [{field: 'Phase', direction: 'desc'}],
+          filterByFormula: `FIND('${req.query.projectId}', {Project ID Lookup}, 0)`
+        }).eachPage(function page(records, fetchNextPage) {
+          for (const record of records) {
+            switch(record.get('Status')) {
+              case 'In Progress':
+                record.inProgress = true
+                break
+              case 'Blocked':
+                record.isBlocked = true
+                break
+              case 'Done':
+                record.isDone = true
+                break
+            }
+            tasks.push(record)
+          }
+          fetchNextPage()
+        }, function done(err) {
+          if (err) { console.error(err); return (err); }
+          res.render('airtable-project-tasks', {
+            tasks: tasks
+          })  
+        })
+      }
+    })
+    
     app.get('/airtable-project-selector', addon.authenticate(), function (req, res) {
-      res.render('airtable-project-status-selector', {
-        projectId: 'recyREtwXuPw94OEz'
-      })
+      res.render('airtable-project-status-selector')
     })
     
     app.get('/search/project', function (req, res) {

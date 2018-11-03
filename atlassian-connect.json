@@ -24,6 +24,39 @@
       "staticContentMacros": [
         {
           "renderingMethod": "get",
+          "url": "/render-airtable-project-tasks?projectId={projectId}",
+          "description": {
+            "value": "Pull the tasks of a project from our Airtable"
+          },
+          "icon": {
+            "width": 80,
+            "height": 80,
+            "url": "/maps/icon.png"
+          },
+          "documentation": {
+            "url": "http://docs.example.com/addons/maps"
+          },
+          "categories": [
+            "visuals"
+          ],
+          "outputType": "block",
+          "bodyType": "none",
+          "editor": {
+            "url": "/airtable-project-selector",
+            "editTitle": {
+              "value": "Edit Project Selection"
+            },
+            "insertTitle": {
+              "value": "Select a Project"
+            }
+          },
+          "name": {
+            "value": "Airtable Project Tasks"
+          },
+          "key": "airtable-project-tasks"
+        },
+        {
+          "renderingMethod": "get",
           "url": "/render-airtable-project-status?projectId={projectId}",
           "description": {
             "value": "Pull the project status from our Airtable"
