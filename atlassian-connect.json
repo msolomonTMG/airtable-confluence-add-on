@@ -1,0 +1,87 @@
+{
+    "key": "my-add-on",
+    "name": "Ping Pong",
+    "description": "My very first add-on",
+    "vendor": {
+        "name": "Angry Nerds",
+        "url": "https://www.atlassian.com/angrynerds"
+    },
+    "baseUrl": "{{localBaseUrl}}",
+    "links": {
+        "self": "{{localBaseUrl}}/atlassian-connect.json",
+        "homepage": "{{localBaseUrl}}/atlassian-connect.json"
+    },
+    "authentication": {
+        "type": "jwt"
+    },
+    "lifecycle": {
+        "installed": "/installed"
+    },
+    "scopes": [
+        "READ"
+    ],
+    "modules": {
+      "staticContentMacros": [
+        {
+          "renderingMethod": "get",
+          "url": "/render-airtable-project-status?projectId={projectId}",
+          "description": {
+            "value": "Pull the project status from our Airtable"
+          },
+          "icon": {
+            "width": 80,
+            "height": 80,
+            "url": "/maps/icon.png"
+          },
+          "documentation": {
+            "url": "http://docs.example.com/addons/maps"
+          },
+          "categories": [
+            "visuals"
+          ],
+          "outputType": "block",
+          "bodyType": "none",
+          "editor": {
+            "url": "/airtable-project-selector",
+            "editTitle": {
+              "value": "Edit Project Selection"
+            },
+            "insertTitle": {
+              "value": "Select a Project"
+            }
+          },
+          "name": {
+            "value": "Airtable Project Status"
+          },
+          "key": "airtable-project-status"
+        }
+      ],
+        "generalPages": [
+            {
+                "key": "hello-world-page-jira",
+                "location": "system.top.navigation.bar",
+                "name": {
+                    "value": "Hello World"
+                },
+                "url": "/hello-world",
+                "conditions": [{
+                    "condition": "user_is_logged_in"
+                }]
+            },
+            {
+                "key": "hello-world-page-confluence",
+                "location": "system.header/left",
+                "name": {
+                    "value": "Hello World"
+                },
+                "url": "/hello-world",
+                "conditions": [{
+                    "condition": "user_is_logged_in"
+                }]
+            }
+        ]
+    },
+    "apiMigrations": {
+        "gdpr": true
+    }
+}

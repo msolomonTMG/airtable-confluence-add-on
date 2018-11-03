@@ -1,0 +1,54 @@
+{{!< layout}}
+<!-- Experiemental Scripts and CSS -->
+<script src="//aui-cdn.atlassian.com/aui-adg/6.0.6/js/aui.js"></script>
+<script src="//aui-cdn.atlassian.com/aui-adg/6.0.6/js/aui-experimental.js"></script>
+<script src="//aui-cdn.atlassian.com/aui-adg/6.0.6/js/aui-datepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="//aui-cdn.atlassian.com/aui-adg/6.0.6/css/aui.css"/>
+<link rel="stylesheet" type="text/css" href="//aui-cdn.atlassian.com/aui-adg/6.0.6/css/aui-experimental.css"/>
+<!-- Content -->
+<div class="aui-page-panel">
+    <div class="aui-page-panel-inner">
+      <form class="aui">
+          <aui-label for="async-project-single-select">Search for Project:</aui-label>
+          <p>
+              <aui-select
+                  id="async-project-single-select"
+                  name="project"
+                  placeholder="Start typing your project name..."
+                  src="{{localBaseUrl}}search/project"
+                  value="type to trigger async"
+              ></aui-select>
+          </p>
+      </form>
+        <table id="version-table" class="aui aui-table-interactive">
+
+        </table>
+    </div>
+</div>
+
+<script>
+let projectId = ''
+$('#async-project-single-select').change(function(e) {
+  /*
+   * sometimes this change method gets called twice
+   * instead of figuring out why, i do a ratchet check instead
+   * to make sure that the value was in fact changed
+  */
+  if(this.value==this.oldvalue)return;
+  this.oldvalue=this.value;
+
+  projectId = $('#async-project-single-select').val()
+});
+
+AP.require(["confluence", "dialog"], function (confluence, dialog) {
+  dialog.getButton("submit").bind(function () {
+    console.log(projectId)
+    let macroParams = {
+      projectId: projectId
+    }
+    confluence.saveMacro(macroParams);
+    confluence.closeMacroEditor();
+    console.log('i think that worked')
+  });
+});
+</script>
