@@ -42,9 +42,7 @@ module.exports = function (app, addon) {
     })
     
     app.get('/airtable-project-selector', addon.authenticate(), function (req, res) {
-      res.render('airtable-project-status-selector', {
-        projectId: 'recyREtwXuPw94OEz'
-      })
+      res.render('airtable-project-status-selector')
     })
     
     app.get('/search/project', function (req, res) {
