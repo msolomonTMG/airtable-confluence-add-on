@@ -175,20 +175,10 @@ module.exports = function (app, addon) {
     })
     
     app.get('/airtable-project-selector', addon.authenticate(), function (req, res) {
-      if (spaceNotAllowed(req.query.spaceKey)) {
-        res.render('unauthorized.hbs', {
-          message: 'This space is not allowed to use this macro. Please consult People Ops for assistance.'
-        })
-      }
       res.render('airtable-project-status-selector')
     })
     
     app.get('/airtable-task-selector', addon.authenticate(), function (req, res) {
-      if (spaceNotAllowed(req.query.spaceKey)) {
-        res.render('unauthorized.hbs', {
-          message: 'This space is not allowed to use this macro. Please consult People Ops for assistance.'
-        })
-      }
       res.render('airtable-task-selector')
     })
     

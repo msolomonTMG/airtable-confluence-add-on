@@ -39,7 +39,7 @@
           "outputType": "block",
           "bodyType": "none",
           "editor": {
-            "url": "/airtable-task-selector?spaceKey={space.key}",
+            "url": "/airtable-task-selector",
             "editTitle": {
               "value": "Edit Task Selection"
             },
@@ -69,7 +69,7 @@
           "outputType": "block",
           "bodyType": "none",
           "editor": {
-            "url": "/airtable-project-selector?spaceKey={space.key}",
+            "url": "/airtable-project-selector",
             "editTitle": {
               "value": "Edit Project Selection"
             },
@@ -99,7 +99,7 @@
           "outputType": "block",
           "bodyType": "none",
           "editor": {
-            "url": "/airtable-project-selector?spaceKey={space.key}",
+            "url": "/airtable-project-selector",
             "editTitle": {
               "value": "Edit Project Selection"
             },
