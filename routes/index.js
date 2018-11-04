@@ -45,7 +45,6 @@ module.exports = function (app, addon) {
         base('Projects').find(req.query.projectId, function(err, record) {
           if (err) { console.error(err); return; }
           let latestStatus = record.get('Latest Status') ? record.get('Latest Status')[0] : ''
-          console.log(record.get('Latest Status')[0])
           switch(latestStatus) {
             case 'Green':
               record.messageStyle = 'success'
