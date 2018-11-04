@@ -42,7 +42,7 @@ module.exports = function (app, addon) {
     });
     
     app.get('/render-airtable-project-status', addon.authenticate(), function (req, res) {
-      if (!spaceNotAllowed(req.query.spaceKey)) {
+      if (!spaceAllowed(req.query.spaceKey)) {
         res.render('unauthorized.hbs', {
           message: 'This space is not allowed to use this macro. Please consult People Ops for assistance.'
         })
@@ -94,7 +94,7 @@ module.exports = function (app, addon) {
     })
     
     app.get('/render-airtable-project-tasks', addon.authenticate(), function (req, res) {
-      if (!spaceNotAllowed(req.query.spaceKey)) {
+      if (!spaceAllowed(req.query.spaceKey)) {
         res.render('unauthorized.hbs', {
           message: 'This space is not allowed to use this macro. Please consult People Ops for assistance.'
         })
@@ -139,7 +139,7 @@ module.exports = function (app, addon) {
     })
     
     app.get('/render-airtable-task', addon.authenticate(), function (req, res) {
-      if (!spaceNotAllowed(req.query.spaceKey)) {
+      if (!spaceAllowed(req.query.spaceKey)) {
         res.render('unauthorized.hbs', {
           message: 'This space is not allowed to use this macro. Please consult People Ops for assistance.'
         })
