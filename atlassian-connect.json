@@ -24,7 +24,7 @@
       "staticContentMacros": [
         {
           "renderingMethod": "get",
-          "url": "/render-airtable-task?taskId={taskId}",
+          "url": "/render-airtable-task?taskId={taskId}&spaceKey={space.key}",
           "description": {
             "value": "Pull a single task from our Airtable"
           },
@@ -54,7 +54,7 @@
         },
         {
           "renderingMethod": "get",
-          "url": "/render-airtable-project-tasks?projectId={projectId}",
+          "url": "/render-airtable-project-tasks?projectId={projectId}&spaceKey={space.key}",
           "description": {
             "value": "Pull the tasks of a project from our Airtable"
           },
@@ -84,7 +84,7 @@
         },
         {
           "renderingMethod": "get",
-          "url": "/render-airtable-project-status?projectId={projectId}",
+          "url": "/render-airtable-project-status?projectId={projectId}&spaceKey={space.key}",
           "description": {
             "value": "Pull the project status from our Airtable"
           },

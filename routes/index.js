@@ -14,6 +14,15 @@ if (process.env.NODE_ENV === 'production') {
 const base = new Airtable({apiKey: airtable.apiKey}).base(airtable.baseId)
 console.log(process.env.NODE_ENV)
 
+// only allow our PULSE space when rendering the macro
+function spaceNotAllowed(spaceKey) {
+  if (spaceKey === 'PULSE') {
+    return true
+  } else {
+    return false
+  }
+}
+
 module.exports = function (app, addon) {
 
     // Root route. This route will serve the `atlassian-connect.json` unless the
@@ -33,6 +42,11 @@ module.exports = function (app, addon) {
     });
     
     app.get('/render-airtable-project-status', addon.authenticate(), function (req, res) {
+      if (spaceNotAllowed(req.query.spaceKey)) {
+        res.render('unauthorized.hbs', {
+          message: 'This space is not allowed to use this macro. Please consult People Ops for assistance.'
+        })
+      }
       if (!req.query.projectId) {
         res.render('airtable-project-status', {
           project: {
@@ -80,6 +94,11 @@ module.exports = function (app, addon) {
     })
     
     app.get('/render-airtable-project-tasks', addon.authenticate(), function (req, res) {
+      if (spaceNotAllowed(req.query.spaceKey)) {
+        res.render('unauthorized.hbs', {
+          message: 'This space is not allowed to use this macro. Please consult People Ops for assistance.'
+        })
+      }
       if (!req.query.projectId) {
         res.render('airtable-project-status', {
           project: {
@@ -120,6 +139,11 @@ module.exports = function (app, addon) {
     })
     
     app.get('/render-airtable-task', addon.authenticate(), function (req, res) {
+      if (spaceNotAllowed(req.query.spaceKey)) {
+        res.render('unauthorized.hbs', {
+          message: 'This space is not allowed to use this macro. Please consult People Ops for assistance.'
+        })
+      }
       if (!req.query.taskId) {
         res.render('airtable-project-status', {
           task: {
@@ -151,10 +175,20 @@ module.exports = function (app, addon) {
     })
     
     app.get('/airtable-project-selector', addon.authenticate(), function (req, res) {
+      if (spaceNotAllowed(req.query.spaceKey)) {
+        res.render('unauthorized.hbs', {
+          message: 'This space is not allowed to use this macro. Please consult People Ops for assistance.'
+        })
+      }
       res.render('airtable-project-status-selector')
     })
     
     app.get('/airtable-task-selector', addon.authenticate(), function (req, res) {
+      if (spaceNotAllowed(req.query.spaceKey)) {
+        res.render('unauthorized.hbs', {
+          message: 'This space is not allowed to use this macro. Please consult People Ops for assistance.'
+        })
+      }
       res.render('airtable-task-selector')
     })
     
