@@ -17,9 +17,9 @@ console.log(process.env.NODE_ENV)
 // only allow our PULSE space when rendering the macro
 function spaceNotAllowed(spaceKey) {
   if (spaceKey === 'PULSE') {
-    return true
-  } else {
     return false
+  } else {
+    return true
   }
 }
 
