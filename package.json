@@ -11,6 +11,9 @@
     "body-parser": "^1.14.2",
     "compression": "^1.6.0",
     "cookie-parser": "^1.4.0",
+    "engines": {
+      "node": "10.3.0"
+    },
     "errorhandler": "^1.4.2",
     "express": "^4.13.3",
     "express-hbs": "*",
@@ -18,11 +21,8 @@
     "nodemon": "^1.18.5",
     "pg": "^7.6.0",
     "sequelize": "^4.38.0",
-    "sqlite3": "^4.0.3",
-    "static-expiry": ">=0.0.5",
-    "engines": {
-      "node": "8.2.0"
-    }
+    "sqlite3": "^4.0.6",
+    "static-expiry": ">=0.0.5"
   },
   "devDependencies": {
     "ngrok": "^2.3.0"
