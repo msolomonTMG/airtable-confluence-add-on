@@ -19,7 +19,10 @@
     "pg": "^7.6.0",
     "sequelize": "^4.38.0",
     "sqlite3": "^4.0.3",
-    "static-expiry": ">=0.0.5"
+    "static-expiry": ">=0.0.5",
+    "engines": {
+      "node": "8.2.0"
+    }
   },
   "devDependencies": {
     "ngrok": "^2.3.0"
